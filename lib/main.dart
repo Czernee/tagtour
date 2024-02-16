@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+//import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'fullmap.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
