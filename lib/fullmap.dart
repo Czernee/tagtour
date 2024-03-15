@@ -66,7 +66,7 @@ class FullMapState extends State<FullMap> {
       final MapWidget mapWidget =
         MapWidget(
           key: const ValueKey("mapWidget"),
-          resourceOptions: ResourceOptions(accessToken: 'sk.eyJ1IjoiYnJ1aGRyZWRkMTIzIiwiYSI6ImNsc290a2l4dDBoMDgya3A5ZGVpaXk4bHcifQ.yL0JNi5ms28HUhjb0Pg25A'),
+          resourceOptions: ResourceOptions(accessToken: accessToken),
           styleUri: MapboxStyles.DARK,
           onMapCreated: _onMapCreated,);
 
