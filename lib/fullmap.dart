@@ -19,35 +19,53 @@ class FullMapState extends State<FullMap> {
   _onMapCreated(MapboxMap mapboxMap) {
     this.mapboxMap = mapboxMap;
 
+    void createOneAnnotation(Uint8List list) {
+    pointAnnotationManager
+        ?.create(PointAnnotationOptions(
+            geometry: Point(
+                coordinates: Position(
+              38.934849,
+              47.203127
+            )).toJson(),
+            textField: "SISKI",
+            textOffset: [0.0, -2.0],
+            textColor: Colors.red.value,
+            iconSize: 3,
+            iconOffset: [0.0, -5.0],
+            symbolSortKey: 10,
+            image: list))
+        .then((value) => pointAnnotation = value);
+  }
+
     mapboxMap.setCamera(CameraOptions(
       center: Point(coordinates: Position(38.936694, 47.208735)).toJson(),
       zoom: 14
     ));
-    
-    // mapboxMap.setBounds(CameraBoundsOptions(
-    //   bounds: CoordinateBounds(
-    //     southwest: Point(
-    //       coordinates: Position(
-    //         38.828945,
-    //         47.157511,
-    //       )
-    //     ).toJson(),
-    //     northeast: Point(
-    //       coordinates: Position(
-    //         38.956618,
-    //         47.290974,
-    //       )
-    //     ).toJson(),
-    //     infiniteBounds: false),
-    //     maxZoom: 18,
-    //     minZoom: 12,
-    //   ));
+
+    /*mapboxMap.setBounds(CameraBoundsOptions(
+      bounds: CoordinateBounds(
+        southwest: Point(
+          coordinates: Position(
+            38.828945,
+            47.157511,
+          )
+        ).toJson(),
+        northeast: Point(
+          coordinates: Position(
+            38.956618,
+            47.290974,
+          )
+        ).toJson(),
+        infiniteBounds: false),
+        maxZoom: 18,
+        minZoom: 12,
+      ));*/
 
 
     mapboxMap.annotations.createPointAnnotationManager().then((value) async {
       pointAnnotationManager = value;
       final ByteData bytes =
-          await rootBundle.load('assets/marker1.jpg');
+          await rootBundle.load('assets/marker.png');
       final Uint8List list = bytes.buffer.asUint8List();
       createOneAnnotation(list);
       var options = <PointAnnotationOptions>[];
@@ -80,23 +98,5 @@ class FullMapState extends State<FullMap> {
       38.934849,
       47.203127
     ));
-  }
-
-  void createOneAnnotation(Uint8List list) {
-    pointAnnotationManager
-        ?.create(PointAnnotationOptions(
-            geometry: Point(
-                coordinates: Position(
-              38.934849,
-              47.203127
-            )).toJson(),
-            textField: "SISKI",
-            textOffset: [0.0, -2.0],
-            textColor: Colors.red.value,
-            iconSize: 3,
-            iconOffset: [0.0, -5.0],
-            symbolSortKey: 10,
-            image: list))
-        .then((value) => pointAnnotation = value);
   }
 }

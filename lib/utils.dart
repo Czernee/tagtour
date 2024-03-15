@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
 Point createRandomPoint() {
